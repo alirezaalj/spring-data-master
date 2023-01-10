@@ -24,6 +24,10 @@ public class Movie {
     @Column(length = 200)
     private String description;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "movie_id",referencedColumnName = "id")
+    private MovieInfo info;
+
 //    @OneToMany()
 //    private Set<MovieCategory> categories;
 //    private Set<Actor> actors;

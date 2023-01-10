@@ -1,8 +1,6 @@
 package ir.alirezaaliajni.practice.spring.data.movieboxproject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author alireza alijani : https://alirezaalijani.ir
@@ -14,6 +12,11 @@ import javax.persistence.Table;
 @Table(name = "actor")
 public class Actor {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private ActorInfo actorInfo;
 }

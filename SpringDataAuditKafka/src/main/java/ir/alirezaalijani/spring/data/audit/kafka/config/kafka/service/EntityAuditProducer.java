@@ -4,6 +4,7 @@ import ir.alirezaalijani.spring.data.audit.kafka.config.kafka.data.KafkaAudit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.RecordMetadata;
+import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
  * @date 8/14/22 - 12:11 PM
  * @project MasterSpringDataAll
  */
+@Profile("dev")
 @Slf4j
 @RequiredArgsConstructor
 @Component

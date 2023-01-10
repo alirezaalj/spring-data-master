@@ -21,8 +21,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-@EntityListeners(KafkaAuditListener.class)
-public class User implements BaseEntity{
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,12 +29,6 @@ public class User implements BaseEntity{
     private String username;
     @Column(unique = true,nullable = false,length = 100,updatable = false)
     private String email;
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updateAt;
     @Column(length = 80)
     private String password;
     @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
@@ -50,20 +43,4 @@ public class User implements BaseEntity{
         roles.add(role);
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", createdAt=" + createdAt +
-                ", updateAt=" + updateAt +
-                ", password='" + password + '\'' +
-                '}';
-    }
-
-    @Override
-    public String getIdentity() {
-        return String.valueOf(this.id);
-    }
 }

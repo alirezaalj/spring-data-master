@@ -3,10 +3,12 @@ package ir.alirezaalijani.spring.data.audit.kafka.config;
 import ir.alirezaalijani.spring.data.audit.kafka.config.data.RetryConfigData;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.retry.backoff.ExponentialBackOffPolicy;
 import org.springframework.retry.policy.SimpleRetryPolicy;
 import org.springframework.retry.support.RetryTemplate;
 
+@Profile("dev")
 @Configuration
 public class RetryConfig {
 

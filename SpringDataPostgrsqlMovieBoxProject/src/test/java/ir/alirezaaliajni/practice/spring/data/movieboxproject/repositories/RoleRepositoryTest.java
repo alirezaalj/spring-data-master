@@ -58,14 +58,30 @@ class RoleRepositoryTest extends PostgresBaseContainer{
     @Test
     @Order(3)
     @Rollback(false)
-    void findRoleTest(){
-        var roles= roleRepository.findAll();
-        assertThat(roles).hasSize(1);
-        assertThat(roles.get(0).getName()).isEqualTo("ROLE_USERG");
+    void updateRoleTestNative(){
+        var role= roleRepository.findAll().get(0);
+        assertThat(role).isNotNull();
+        role.setName("ROLE_USER");
+        System.out.println("----- update native -----");
+        roleRepository.updateWithQuery(role.getName(),role.getId());
+        System.out.println("----- update native -----");
+        role =roleRepository.findAll().get(0);
+        assertThat(role.getId()).isGreaterThan(0);
+        assertThat(role.getName()).isEqualTo("ROLE_USER");
     }
 
     @Test
     @Order(4)
+    @Rollback(false)
+    void findRoleTest(){
+        var roles= roleRepository.findAll();
+        System.out.println("ROlES:"+roles);
+        assertThat(roles).hasSize(1);
+        assertThat(roles.get(0).getName()).isEqualTo("ROLE_USER");
+    }
+
+    @Test
+    @Order(5)
     @Rollback(false)
     void deleteRoleTest(){
         var role=roleRepository.findAll().get(0);

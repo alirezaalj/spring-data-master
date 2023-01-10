@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-@Profile(value = {"dev","test"})
+@Profile(value = {"dev"})
 public class AppStartupInitializerDevImpl implements AppStartupInitializer{
 
     private final KafkaAdminClient kafkaAdminClient;
